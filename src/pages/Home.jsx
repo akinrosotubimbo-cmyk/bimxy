@@ -375,24 +375,29 @@ export default function Home() {
               </Link>
             </div>
 
-            <dl className="mt-12 flex flex-wrap gap-x-10 gap-y-6">
-              {[
-                [projects.length, "Projects"],
-                [count("app"), "Apps"],
-                [count("website"), "Websites"],
-                [count("game"), "Games"],
-              ].map(([n, label]) => (
-                <div key={label}>
-                  <dd className="font-display text-4xl font-extrabold text-accent">
-                    {n}
-                  </dd>
+      <dl className="mt-12 flex flex-wrap gap-x-10 gap-y-6">
+  {!loading &&
+    [
+      [projects.length, "Projects"],
+      [count("app"), "Apps"],
+      [count("website"), "Websites"],
+      [count("game"), "Games"],
+    ].map(([n, label]) => (
+      <div key={label}>
+        <dd className="font-display text-4xl font-extrabold text-accent">
+          <motion.span
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45 }}
+          >
+            {n}
+          </motion.span>
+        </dd>
 
-                  <dt className="text-sm text-muted">
-                    {label}
-                  </dt>
-                </div>
-              ))}
-            </dl>
+        <dt className="text-sm text-muted">{label}</dt>
+      </div>
+    ))}
+</dl>
           </div>
 
           <HeroShowcase projects={projects} />

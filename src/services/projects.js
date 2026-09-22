@@ -25,12 +25,20 @@ export async function getProjects() {
 }
 
 export async function getPublishedProjects() {
+  const started = performance.now();
+
   const q = query(
     projectsRef,
     where("published", "==", true)
   );
 
   const snapshot = await getDocs(q);
+
+  console.log(
+    `Firestore projects loaded in ${Math.round(
+      performance.now() - started
+    )}ms`
+  );
 
   return snapshot.docs.map((doc) => ({
     id: doc.id,

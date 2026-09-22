@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import bimxyLogo from "../assets/bimxy-logo.svg";
 
 const links = [
   { label: "Apps", to: "/#work" },
@@ -21,10 +22,10 @@ export default function Navbar() {
         {/* Logo */}
         <Link to="/" onClick={close} className="flex items-center">
           <img
-            src="/bimxy.png"
-            alt="Bimxy"
-            className="h-11 w-auto object-contain"
-          />
+  src={bimxyLogo}
+  alt="Bimxy"
+  className="h-10 w-auto"
+/>
         </Link>
 
         <ul className="hidden items-center gap-8 text-sm font-medium md:flex">

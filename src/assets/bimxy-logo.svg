@@ -1,0 +1,54 @@
+<svg
+  width="320"
+  height="100"
+  viewBox="0 0 320 100"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <g fill="#ffffff">
+
+    <!-- i -->
+    <rect x="8" y="35" width="18" height="57" />
+    <rect x="8" y="8" width="18" height="17" />
+    <circle cx="17" cy="30" r="9" />
+
+    <!-- B -->
+    <path
+      d="
+        M42 8
+        H68
+        C88 8 99 18 99 33
+        C99 43 94 50 86 54
+        C96 58 102 65 102 76
+        C102 87 93 92 74 92
+        H42
+        V76
+        H69
+        C77 76 81 73 81 68
+        C81 62 77 59 69 59
+        H42
+        V43
+        H67
+        C75 43 79 40 79 34
+        C79 28 75 24 67 24
+        H42
+        Z
+      "
+    />
+
+    <!-- lower circle -->
+    <circle cx="60" cy="76" r="9" />
+
+    <!-- IMXY -->
+    <text
+      x="125"
+      y="67"
+      font-family="Arial, Helvetica, sans-serif"
+      font-size="48"
+      font-weight="700"
+      letter-spacing="1"
+    >
+      IMXY
+    </text>
+
+  </g>
+</svg>
