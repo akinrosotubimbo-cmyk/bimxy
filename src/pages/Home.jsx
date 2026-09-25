@@ -228,76 +228,95 @@ function ProjectCarousel({ projects }) {
                 )}
               </div>
 
-              {/* RIGHT SCREENSHOTS */}
-              <div className="relative flex min-h-[360px] items-center justify-center lg:min-h-[500px]">
-                {visibleScreenshots.length === 0 ? (
-                  <div className="flex h-72 w-72 items-center justify-center rounded-[2rem] border border-white/10 bg-black">
-                    <AppIcon project={project} size={120} />
-                  </div>
-                ) : project.type === "website" ? (
-                  <div className="relative w-full max-w-2xl">
-                    <div className="overflow-hidden rounded-[1.5rem] border border-white/10 bg-black shadow-2xl">
-                      <img
-                        src={visibleScreenshots[0]}
-                        alt={`${project.name} screenshot`}
-                        className="h-auto w-full object-cover"
-                      />
-                    </div>
-                  </div>
-                ) : (
-                  <div className="relative h-[400px] w-full max-w-xl md:h-[500px]">
-                    {visibleScreenshots.map((src, shotIndex) => {
-                      const layouts = [
-                        {
-                          left: "2%",
-                          top: "18%",
-                          rotate: -9,
-                          zIndex: 1,
-                        },
-                        {
-                          left: "50%",
-                          top: "2%",
-                          rotate: 0,
-                          zIndex: 3,
-                        },
-                        {
-                          right: "2%",
-                          top: "18%",
-                          rotate: 9,
-                          zIndex: 1,
-                        },
-                      ];
+             {/* RIGHT SCREENSHOTS */}
+<div className="relative flex min-h-[360px] items-center justify-center lg:min-h-[500px]">
+  {visibleScreenshots.length === 0 ? (
+    <div className="flex h-72 w-72 items-center justify-center rounded-[2rem] border border-white/10 bg-black">
+      <AppIcon project={project} size={120} />
+    </div>
+  ) : project.type === "website" ? (
+    <div className="relative w-full max-w-2xl">
+      <div className="overflow-hidden rounded-[1.5rem] border border-white/10 bg-black shadow-2xl">
+        <img
+          src={visibleScreenshots[0]}
+          alt={`${project.name} screenshot`}
+          className="h-auto w-full object-cover"
+        />
+      </div>
+    </div>
+  ) : visibleScreenshots.length === 1 ? (
+    <div className="relative flex w-full items-center justify-center">
+      <div className="absolute -inset-10 rounded-full bg-brand/10 blur-3xl" />
 
-                      const layout = layouts[shotIndex];
+      <motion.div
+        initial={{ opacity: 0, scale: 0.92 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{
+          duration: 0.7,
+          ease: [0.22, 1, 0.36, 1],
+        }}
+        className="relative w-[90%] max-w-[580px] overflow-hidden rounded-[2rem] border-[5px] border-[#292929] bg-black shadow-2xl"
+      >
+        <img
+          src={visibleScreenshots[0]}
+          alt={`${project.name} screenshot`}
+          className="block h-auto w-full object-contain"
+          loading="lazy"
+        />
+      </motion.div>
+    </div>
+  ) : (
+    <div className="relative h-[400px] w-full max-w-xl md:h-[500px]">
+      {visibleScreenshots.map((src, shotIndex) => {
+        const layouts = [
+          {
+            left: "2%",
+            top: "18%",
+            rotate: -9,
+            zIndex: 1,
+          },
+          {
+            left: "50%",
+            top: "2%",
+            rotate: 0,
+            zIndex: 3,
+          },
+          {
+            right: "2%",
+            top: "18%",
+            rotate: 9,
+            zIndex: 1,
+          },
+        ];
 
-                      return (
-                        <motion.div
-                          key={`${src}-${shotIndex}`}
-                          className="absolute w-[42%] max-w-[230px] overflow-hidden rounded-[2rem] border-[5px] border-[#292929] bg-black shadow-2xl"
-                          style={{
-                            left: layout.left,
-                            right: layout.right,
-                            top: layout.top,
-                            zIndex: layout.zIndex,
-                          }}
-                          animate={{
-                            rotate: layout.rotate,
-                          }}
-                        >
-                          <img
-                            src={src}
-                            alt={`${project.name} screenshot ${
-                              shotIndex + 1
-                            }`}
-                            className="block h-auto w-full object-cover"
-                            loading="lazy"
-                          />
-                        </motion.div>
-                      );
-                    })}
-                  </div>
-                )}
-              </div>
+        const layout = layouts[shotIndex];
+
+        return (
+          <motion.div
+            key={`${src}-${shotIndex}`}
+            className="absolute w-[42%] max-w-[230px] overflow-hidden rounded-[2rem] border-[5px] border-[#292929] bg-black shadow-2xl"
+            style={{
+              left: layout.left,
+              right: layout.right,
+              top: layout.top,
+              zIndex: layout.zIndex,
+            }}
+            animate={{
+              rotate: layout.rotate,
+            }}
+          >
+            <img
+              src={src}
+              alt={`${project.name} screenshot ${shotIndex + 1}`}
+              className="block h-auto w-full object-cover"
+              loading="lazy"
+            />
+          </motion.div>
+        );
+      })}
+    </div>
+  )}
+</div>
             </motion.div>
           </AnimatePresence>
 

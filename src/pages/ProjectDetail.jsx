@@ -38,7 +38,54 @@ function ProjectVisual({ project }) {
     );
   }
 
-  const visibleShots = screenshots.slice(0, 3);
+const visibleShots = screenshots.slice(0, 3);
+
+if (visibleShots.length === 1) {
+  return (
+    <div className="relative mx-auto w-full max-w-3xl">
+      <div className="absolute -inset-8 rounded-[3rem] bg-brand/10 blur-3xl" />
+
+      <div className="relative overflow-hidden rounded-[2rem] border border-line bg-card p-2 shadow-2xl">
+        <div className="overflow-hidden rounded-[1.5rem] bg-black">
+          <img
+            src={visibleShots[0]}
+            alt={`${project.name} screenshot`}
+            className="h-auto w-full object-contain"
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+return (
+  <div className="relative mx-auto flex h-[480px] w-full max-w-2xl items-center justify-center md:h-[600px]">
+    <div className="absolute inset-10 rounded-full bg-brand/10 blur-3xl" />
+
+    {visibleShots.map((src, index) => {
+      const positions = [
+        "left-[4%] top-[14%] rotate-[-9deg] md:left-[7%]",
+        "left-1/2 top-[3%] -translate-x-1/2 rotate-0",
+        "right-[4%] top-[14%] rotate-[9deg] md:right-[7%]",
+      ];
+
+      return (
+        <div
+          key={`${src}-${index}`}
+          className={`absolute ${positions[index]} overflow-hidden rounded-[2rem] border-[5px] border-[#252525] bg-black shadow-2xl w-[42%] max-w-[250px] md:w-[38%]`}
+          style={{ zIndex: index + 1 }}
+        >
+          <img
+            src={src}
+            alt={`${project.name} screenshot ${index + 1}`}
+            className="h-auto w-full object-cover"
+          />
+        </div>
+      );
+    })}
+  </div>
+);
+
 
   return (
     <div className="relative mx-auto flex h-[480px] w-full max-w-2xl items-center justify-center md:h-[600px]">

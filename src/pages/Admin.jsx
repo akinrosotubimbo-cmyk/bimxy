@@ -668,23 +668,42 @@ console.log("AUTH UID:", auth.currentUser?.uid);
                     0 &&
                     form.screenshots && (
                       <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
-                        {form.screenshots
-                          .split("\n")
-                          .filter(Boolean)
-                          .map(
-                            (url, index) => (
-                              <div
-                                key={`${url}-${index}`}
-                                className="overflow-hidden rounded-xl border border-line bg-card"
-                              >
-                                <img
-                                  src={url}
-                                  alt=""
-                                  className="aspect-[9/16] w-full object-cover"
-                                />
-                              </div>
-                            )
-                          )}
+{form.screenshots && (
+  <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
+    {form.screenshots
+      .split("\n")
+      .filter(Boolean)
+      .map((url, index) => (
+        <div
+          key={`${url}-${index}`}
+          className="relative overflow-hidden rounded-xl border border-line bg-card"
+        >
+          <img
+            src={url}
+            alt=""
+            className="aspect-[9/16] w-full object-cover"
+          />
+
+          <button
+            type="button"
+            onClick={() => {
+              const updatedScreenshots = form.screenshots
+                .split("\n")
+                .filter(Boolean)
+                .filter((_, i) => i !== index)
+                .join("\n");
+
+              updateField("screenshots", updatedScreenshots);
+            }}
+            className="absolute right-2 top-2 grid h-7 w-7 place-items-center rounded-full bg-black/70 text-lg font-bold text-white transition-colors hover:bg-red-500"
+            aria-label={`Remove screenshot ${index + 1}`}
+          >
+            ×
+          </button>
+        </div>
+      ))}
+  </div>
+)}
                       </div>
                     )}
                 </div>
