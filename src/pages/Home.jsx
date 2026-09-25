@@ -348,6 +348,125 @@ function ProjectCarousel({ projects }) {
   );
 }
 
+function PortfolioMotion() {
+  return (
+    <div className="relative mt-10 h-48 w-full max-w-xl overflow-hidden sm:h-56">
+      {/* soft ambient glow */}
+      <motion.div
+        className="absolute left-1/2 top-1/2 h-40 w-40 -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand/15 blur-3xl"
+        animate={{ scale: [1, 1.18, 1], opacity: [0.35, 0.55, 0.35] }}
+        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+      />
+
+      {/* floating browser */}
+      <motion.div
+        className="absolute left-[3%] top-3 w-[52%] overflow-hidden rounded-2xl border border-white/10 bg-[#151515] shadow-2xl"
+        animate={{
+          y: [0, -10, 0],
+          rotate: [-2, 1, -2],
+          x: [0, 7, 0],
+        }}
+        transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <div className="flex items-center gap-1.5 border-b border-white/10 px-3 py-2">
+          <span className="h-1.5 w-1.5 rounded-full bg-white/20" />
+          <span className="h-1.5 w-1.5 rounded-full bg-white/20" />
+          <span className="h-1.5 w-1.5 rounded-full bg-white/20" />
+        </div>
+        <div className="p-3">
+          <div className="h-2 w-16 rounded-full bg-white/15" />
+          <div className="mt-3 h-16 rounded-xl bg-gradient-to-br from-brand/35 via-brand/10 to-transparent" />
+          <div className="mt-3 flex gap-2">
+            <div className="h-2 w-20 rounded-full bg-white/10" />
+            <div className="h-2 w-10 rounded-full bg-white/5" />
+          </div>
+        </div>
+      </motion.div>
+
+      {/* floating phone */}
+      <motion.div
+        className="absolute right-[6%] top-1 w-[25%] min-w-[92px] max-w-[130px] overflow-hidden rounded-[1.5rem] border-4 border-[#292929] bg-black shadow-2xl"
+        animate={{
+          y: [4, -14, 4],
+          rotate: [5, 1, 5],
+        }}
+        transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+      >
+        <div className="mx-auto mt-1.5 h-1 w-7 rounded-full bg-white/15" />
+        <div className="m-2 rounded-[1rem] bg-[#171717] p-2">
+          <div className="h-20 rounded-xl bg-gradient-to-b from-brand/45 to-brand/5" />
+          <div className="mt-2 h-2 w-12 rounded-full bg-white/15" />
+          <div className="mt-1.5 h-2 w-16 rounded-full bg-white/5" />
+          <div className="mt-3 h-6 rounded-lg bg-brand/80" />
+        </div>
+      </motion.div>
+
+      {/* game/product tile */}
+      <motion.div
+        className="absolute bottom-1 left-[27%] w-[42%] rounded-2xl border border-white/10 bg-[#111111]/95 p-3 shadow-2xl backdrop-blur-md"
+        animate={{
+          y: [3, 12, 3],
+          rotate: [1, -2, 1],
+          scale: [1, 1.025, 1],
+        }}
+        transition={{ duration: 5.2, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+      >
+        <div className="flex items-center justify-between">
+          <div className="h-2 w-14 rounded-full bg-white/20" />
+          <div className="h-5 w-5 rounded-lg bg-brand" />
+        </div>
+
+        <div className="mt-3 grid grid-cols-4 gap-1.5">
+          {Array.from({ length: 8 }).map((_, i) => (
+            <motion.span
+              key={i}
+              className="aspect-square rounded-md border border-white/5 bg-white/[0.06]"
+              animate={{ opacity: [0.35, 0.8, 0.35] }}
+              transition={{
+                duration: 2.4,
+                repeat: Infinity,
+                delay: i * 0.12,
+                ease: "easeInOut",
+              }}
+            />
+          ))}
+        </div>
+      </motion.div>
+
+      {/* moving accent line */}
+      <motion.div
+        className="absolute bottom-0 left-0 h-px w-24 bg-brand"
+        animate={{ x: ["0%", "360%"] }}
+        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+      />
+
+      {/* tiny floating particles */}
+      {[
+        { left: "7%", top: "72%", delay: 0 },
+        { left: "72%", top: "76%", delay: 0.8 },
+        { left: "88%", top: "42%", delay: 1.4 },
+        { left: "55%", top: "5%", delay: 0.4 },
+      ].map((particle, index) => (
+        <motion.span
+          key={index}
+          className="absolute h-1.5 w-1.5 rounded-full bg-brand"
+          style={{ left: particle.left, top: particle.top }}
+          animate={{
+            y: [0, -12, 0],
+            opacity: [0.2, 0.9, 0.2],
+          }}
+          transition={{
+            duration: 3,
+            repeat: Infinity,
+            delay: particle.delay,
+            ease: "easeInOut",
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
 export default function Home() {
   const [filter, setFilter] = useState("all");
 
@@ -393,6 +512,8 @@ export default function Home() {
                 Get in touch
               </Link>
             </div>
+
+            <PortfolioMotion />
 
       <dl className="mt-12 flex flex-wrap gap-x-10 gap-y-6">
   {!loading &&
